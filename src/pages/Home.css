@@ -1,0 +1,25 @@
+.home-section {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  margin: 2rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60px 20px;
+  color: white;
+  text-align: center;
+}
+
+.home-hero {
+  max-width: 700px;
+  margin-bottom: 2.5rem;
+  p {
+    opacity: 0.9;
+    line-height: 1.6;
+  }
+}
+
+.home-hero-title {
+  margin-bottom: 2rem;
+  letter-spacing: 1px;
+}

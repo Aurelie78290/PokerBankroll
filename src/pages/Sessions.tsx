@@ -1,0 +1,205 @@
+import { useEffect, useState } from "react";
+import { fetchWithAuth } from "../services/api";
+import { Link } from "react-router";
+import cardpoker from "../assets/images/cardpoker.png";
+
+import "./Sessions.css";
+
+type Session = {
+  id: number;
+  user_id: number;
+  username: string;
+  date: string;
+  buy_in: number;
+  cash_out: number;
+  profit: number;
+  notes: string;
+  tags: string | null; // "Good Game,Run Good" ou null
+};
+
+function Sessions() {
+  const [sessions, setSessions] = useState<Session[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  // Stats calculées
+  const totalSessions = sessions.length;
+  const totalProfit = sessions.reduce(
+    (sum, s) => sum + (s.cash_out - s.buy_in),
+    0,
+  );
+  const winRate =
+    totalSessions > 0
+      ? (
+          (sessions.filter((s) => s.cash_out - s.buy_in > 0).length /
+            totalSessions) *
+          100
+        ).toFixed(0)
+      : 0;
+
+  useEffect(() => {
+    fetchWithAuth("/sessions")
+      .then((res) => res.json())
+      .then((data) => {
+        setSessions(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error(err);
+        setError("Erreur lors du chargement des sessions");
+        setLoading(false);
+      });
+  }, []);
+
+  // Formater la date
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString("fr-FR", {
+      day: "2-digit",
+      month: "long",
+      year: "numeric",
+    });
+  };
+
+  // Parser les tags
+  const parseTags = (tagsString: string | null) => {
+    if (!tagsString) return [];
+    return tagsString.split(",").map((tag) => tag.trim());
+  };
+
+  if (loading) {
+    return (
+      <div className="sessions-container">
+        <div className="sessions-loading">
+          <div className="spinner"></div>
+          <p>Chargement des sessions...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="sessions-container">
+        <div className="sessions-error">
+          <p>❌ {error}</p>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="sessions-container">
+      {/* Header avec titre et bouton */}
+      <div className="sessions-header">
+        <div>
+          <h1 className="sessions-title">Mes Sessions</h1>
+          <p className="sessions-subtitle">
+            Historique de vos parties de cash game
+          </p>
+        </div>
+        <button className="btn-add-session">➕ Nouvelle session</button>
+      </div>
+
+      {/* Stats rapides */}
+      <div className="sessions-stats">
+        <div className="stat-card">
+          <div className="stat-icon">
+            <img src={cardpoker} alt="cartes de poker" />
+          </div>
+          <div className="stat-content">
+            <p className="stat-label">Sessions</p>
+            <p className="stat-value">{totalSessions}</p>
+          </div>
+        </div>
+
+        <div className="stat-card">
+          <div className="stat-icon">💰</div>
+          <div className="stat-content">
+            <p className="stat-label">Profit total</p>
+            <p className={`stat-value ${totalProfit >= 0 ? "profit" : "loss"}`}>
+              {totalProfit >= 0 ? "+" : ""}
+              {totalProfit.toFixed(2)}€
+            </p>
+          </div>
+        </div>
+
+        <div className="stat-card">
+          <div className="stat-icon">📈</div>
+          <div className="stat-content">
+            <p className="stat-label">Win rate</p>
+            <p className="stat-value">{winRate}%</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Liste des sessions */}
+      {sessions.length === 0 ? (
+        <div className="sessions-empty">
+          <div className="empty-icon">🃏</div>
+          <h2>Aucune session enregistrée</h2>
+          <p>Commencez par ajouter votre première session de poker !</p>
+          <button className="btn-add-session">➕ Ajouter une session</button>
+        </div>
+      ) : (
+        <div className="sessions-grid">
+          {sessions.map((session) => (
+            <div key={session.id} className="session-card">
+              {/* Header de la carte */}
+              <div className="session-card-header">
+                <div className="session-date">
+                  📅 {formatDate(session.date)}
+                </div>
+                <div
+                  className={`session-profit ${session.cash_out - session.buy_in >= 0 ? "profit" : "loss"}`}
+                >
+                  {session.cash_out - session.buy_in >= 0 ? "+" : ""}
+                  {(session.cash_out - session.buy_in).toFixed(2)}€
+                </div>
+              </div>
+
+              {/* Body de la carte */}
+              <div className="session-card-body">
+                <div className="session-info-row">
+                  <div className="info-item">
+                    <span className="info-label">Buy-in</span>
+                    <span className="info-value">{session.buy_in}€</span>
+                  </div>
+                  <div className="info-item">
+                    <span className="info-label">Cash-out</span>
+                    <span className="info-value">{session.cash_out}€</span>
+                  </div>
+                </div>
+
+                {session.notes && (
+                  <div className="session-notes">
+                    <p>🤑 {session.notes}</p>
+                  </div>
+                )}
+
+                {session.tags && (
+                  <div className="session-tags">
+                    {parseTags(session.tags).map((tag, index) => (
+                      <span key={index} className="tag">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* Footer de la carte */}
+              <div className="session-card-footer">
+                <Link to={`/sessions/${session.id}`} className="btn-details">
+                  Voir détails →
+                </Link>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+export default Sessions;
