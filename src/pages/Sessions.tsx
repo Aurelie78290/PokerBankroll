@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 import { fetchWithAuth } from "../services/api";
 import { Link } from "react-router";
-import cardpoker from "../assets/images/cardpoker.png";
+import pokerTable from "../assets/images/poker-table.png";
+import pokerProfit from "../assets/images/poker-profit.png";
+import pokerWin from "../assets/images/pokerWin.png";
+import pokerStart from "../assets/images/poker-start.png";
 
 import "./Sessions.css";
 
@@ -105,7 +108,7 @@ function Sessions() {
       <div className="sessions-stats">
         <div className="stat-card">
           <div className="stat-icon">
-            <img src={cardpoker} alt="cartes de poker" />
+            <img src={pokerTable} alt="cartes de poker" />
           </div>
           <div className="stat-content">
             <p className="stat-label">Sessions</p>
@@ -114,7 +117,9 @@ function Sessions() {
         </div>
 
         <div className="stat-card">
-          <div className="stat-icon">💰</div>
+          <div className="stat-icon">
+            <img src={pokerProfit} alt="cartes de poker" />
+          </div>
           <div className="stat-content">
             <p className="stat-label">Profit total</p>
             <p className={`stat-value ${totalProfit >= 0 ? "profit" : "loss"}`}>
@@ -125,7 +130,9 @@ function Sessions() {
         </div>
 
         <div className="stat-card">
-          <div className="stat-icon">📈</div>
+          <div className="stat-icon">
+            <img src={pokerWin} alt="cartes de poker" />
+          </div>
           <div className="stat-content">
             <p className="stat-label">Win rate</p>
             <p className="stat-value">{winRate}%</p>
@@ -136,7 +143,9 @@ function Sessions() {
       {/* Liste des sessions */}
       {sessions.length === 0 ? (
         <div className="sessions-empty">
-          <div className="empty-icon">🃏</div>
+          <div className="empty-icon">
+            <img src={pokerStart} alt="cartes de poker" />
+          </div>
           <h2>Aucune session enregistrée</h2>
           <p>Commencez par ajouter votre première session de poker !</p>
           <button className="btn-add-session">➕ Ajouter une session</button>
@@ -171,28 +180,33 @@ function Sessions() {
                   </div>
                 </div>
 
-                {session.notes && (
-                  <div className="session-notes">
-                    <p>🤑 {session.notes}</p>
-                  </div>
-                )}
+                <div className="session-conclusion">
+                  {session.notes && (
+                    <div className="session-notes">
+                      <p>🤑 {session.notes}</p>
+                    </div>
+                  )}
 
-                {session.tags && (
-                  <div className="session-tags">
-                    {parseTags(session.tags).map((tag, index) => (
-                      <span key={index} className="tag">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                )}
-              </div>
+                  {session.tags && (
+                    <div className="session-tags">
+                      {parseTags(session.tags).map((tag, index) => (
+                        <span key={index} className="tag">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  )}
 
-              {/* Footer de la carte */}
-              <div className="session-card-footer">
-                <Link to={`/sessions/${session.id}`} className="btn-details">
-                  Voir détails →
-                </Link>
+                  {/* Footer de la carte */}
+                  <div className="session-card-footer">
+                    <Link
+                      to={`/sessions/${session.id}`}
+                      className="btn-details"
+                    >
+                      Voir détails →
+                    </Link>
+                  </div>
+                </div>
               </div>
             </div>
           ))}
