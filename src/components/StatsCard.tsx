@@ -19,8 +19,8 @@ function StatsCard({
     <section className="statsCard-grid">
       <div className="statsCard-card">
         <div className="statsCard-content">
-          <p className="stat-label">Bankroll actuelle</p>
-          <p className="stat-value">
+          <p className="stats-label">Bankroll actuelle</p>
+          <p className="stats-value">
             {!isNaN(bankrollNumber) ? bankrollNumber.toFixed(2) : "0.00"}€
           </p>
         </div>
@@ -29,7 +29,7 @@ function StatsCard({
       <div className="statsCard-card">
         <div className="stat-icon profit">{totalProfit >= 0 ? "📈" : "📉"}</div>
         <div className="statsCard-content">
-          <p className="stat-label">Profit Total</p>
+          <p className="stats-label">Profit Total</p>
           <p className={`stat-value ${totalProfit >= 0 ? "profit" : "loss"}`}>
             {totalProfit >= 0 ? "+" : ""}
             {totalProfit.toFixed(2)}€
@@ -39,15 +39,15 @@ function StatsCard({
 
       <div className="statsCard-card">
         <div className="statsCard-content">
-          <p className="stat-label">Sessions Jouées</p>
-          <p className="stat-value">{totalSessions}</p>
+          <p className="stats-label">Sessions Jouées</p>
+          <p className="stats-value">{totalSessions}</p>
         </div>
       </div>
 
       <div className="statsCard-card">
         <div className="statsCard-content">
-          <p className="stat-label">Win Rate</p>
-          <p className="stat-value">{winRate}%</p>
+          <p className="stats-label">Win Rate</p>
+          <p className="stats-value">{winRate}%</p>
         </div>
       </div>
     </section>

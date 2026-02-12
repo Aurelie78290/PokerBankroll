@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { fetchWithAuth } from "../services/api";
 import { Link } from "react-router";
+import AddSession from "../components/AddSession";
 import pokerTable from "../assets/images/poker-table.png";
 import pokerProfit from "../assets/images/poker-profit.png";
 import pokerWin from "../assets/images/pokerWin.png";
@@ -17,13 +18,46 @@ type Session = {
   cash_out: number;
   profit: number;
   notes: string;
-  tags: string | null; // "Good Game,Run Good" ou null
+  tags: string | null;
+};
+
+type Tag = {
+  id: number;
+  name: string;
 };
 
 function Sessions() {
   const [sessions, setSessions] = useState<Session[]>([]);
+  const [tags, setTags] = useState<Tag[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [showAdd, setShowAdd] = useState(false);
+
+  const loadSessions = () => {
+    setLoading(true);
+    Promise.all([
+      fetchWithAuth("/sessions").then((res) => res.json()),
+      fetchWithAuth("/tags").then((res) => res.json()),
+    ])
+      .then(([sessionsData, tagsData]) => {
+        if (Array.isArray(sessionsData)) {
+          setSessions(sessionsData);
+        }
+        if (Array.isArray(tagsData)) {
+          setTags(tagsData);
+        }
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error(err);
+        setError("Erreur lors du chargement");
+        setLoading(false);
+      });
+  };
+
+  useEffect(() => {
+    loadSessions();
+  }, []);
 
   // Stats calculées
   const totalSessions = sessions.length;
@@ -39,20 +73,6 @@ function Sessions() {
           100
         ).toFixed(0)
       : 0;
-
-  useEffect(() => {
-    fetchWithAuth("/sessions")
-      .then((res) => res.json())
-      .then((data) => {
-        setSessions(data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error(err);
-        setError("Erreur lors du chargement des sessions");
-        setLoading(false);
-      });
-  }, []);
 
   // Formater la date
   const formatDate = (dateString: string) => {
@@ -98,10 +118,12 @@ function Sessions() {
         <div>
           <h1 className="sessions-title">Mes Sessions</h1>
           <p className="sessions-subtitle">
-            Historique de vos parties de cash game
+            Historique de mes parties de cash game.
           </p>
         </div>
-        <button className="btn-add-session">➕ Nouvelle session</button>
+        <button className="btn-add-session" onClick={() => setShowAdd(true)}>
+          ➕ Nouvelle session
+        </button>
       </div>
 
       {/* Stats rapides */}
@@ -148,7 +170,9 @@ function Sessions() {
           </div>
           <h2>Aucune session enregistrée</h2>
           <p>Commencez par ajouter votre première session de poker !</p>
-          <button className="btn-add-session">➕ Ajouter une session</button>
+          <button className="btn-add-session" onClick={() => setShowAdd(true)}>
+            ➕ Ajouter une session
+          </button>
         </div>
       ) : (
         <div className="sessions-grid">
@@ -211,6 +235,14 @@ function Sessions() {
             </div>
           ))}
         </div>
+      )}
+
+      {showAdd && (
+        <AddSession
+          onClose={() => setShowAdd(false)}
+          onSessionAdded={loadSessions}
+          tags={tags}
+        />
       )}
     </div>
   );

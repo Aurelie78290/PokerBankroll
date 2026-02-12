@@ -1,0 +1,134 @@
+.recent-sessions {
+  padding: 1.5rem;
+}
+
+.recent-sessions-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.recent-sessions-header h2 {
+  font-size: 1.5rem;
+  color: rgba(255, 255, 255, 0.75);
+  margin: 0;
+}
+
+.view-all-link {
+  color: #b22222;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.2s;
+}
+
+.view-all-link:hover {
+  color: #065f46;
+}
+
+.recent-sessions-empty {
+  text-align: center;
+  padding: 2rem;
+}
+
+.recent-sessions-empty p {
+  color: #6b7280;
+  margin-bottom: 1rem;
+}
+
+.btn-add-first {
+  display: inline-block;
+  background: #10b981;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+
+.btn-add-first:hover {
+  background: #059669;
+}
+
+.recent-sessions-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.recent-session-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: 5px;
+  background: linear-gradient(145deg, #242830 0%, #1f232a 50%, #1a1e24 100%);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  text-decoration: none;
+  transition: all 0.2s;
+  border: 2px solid transparent;
+}
+
+.recent-session-item:hover {
+  transform: translateX(4px);
+}
+
+.session-date-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  background: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.date-day {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #1f2937;
+  line-height: 1;
+}
+
+.date-month {
+  font-size: 0.75rem;
+  color: #6b7280;
+  text-transform: uppercase;
+}
+
+.session-info {
+  flex: 1;
+}
+
+.session-title {
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.75);
+  margin: 0 0 0.25rem 0;
+}
+
+.session-details {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin: 0;
+}
+
+.session-profit {
+  font-size: 1.25rem;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+}
+
+.session-profit.profit {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.session-profit.loss {
+  background: #fee2e2;
+  color: #991b1b;
+}

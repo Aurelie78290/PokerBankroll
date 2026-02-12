@@ -1,0 +1,65 @@
+.top-sessions {
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.top-sessions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.top-session-card {
+  padding: 1.5rem;
+  border-radius: 5px;
+  text-align: center;
+  border: 2px solid;
+}
+
+.top-session-card.best {
+  background: linear-gradient(155deg, #aebdb6 0%, #519672 100%);
+  border-color: #065f46;
+}
+
+.top-session-card.worst {
+  background: linear-gradient(155deg, #d8cece 0%, #916161 100%);
+  border-color: #b22222;
+}
+
+.top-session-icon {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+}
+
+.top-session-card h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #4b5563;
+  margin: 0 0 0.75rem 0;
+}
+
+.top-session-date {
+  font-size: 1rem;
+  color: #6b7280;
+  margin: 0 0 0.25rem 0;
+}
+
+.top-session-profit {
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 0 0 0.25rem 0;
+}
+
+.top-session-profit.profit {
+  color: #065f46;
+}
+
+.top-session-profit.loss {
+  color: #991b1b;
+}
+
+.top-session-details {
+  font-size: 1rem;
+  color: #6b7280;
+  margin: 0;
+}

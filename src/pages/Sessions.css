@@ -21,20 +21,28 @@
 }
 
 .sessions-subtitle {
-  color: #6b7280;
+  color: rgba(255, 255, 255, 0.75);
   text-align: start;
   font-size: 1rem;
   margin: 0;
 }
 
 .btn-add-session {
-  background: #2c5364;
-  color: white;
+  background: linear-gradient(145deg, #242830 0%, #1f232a 50%, #1a1e24 100%);
+  box-shadow:
+    0 35px 90px rgba(0, 0, 0, 0.75),
+    0 0 0 1px rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.75);
   border: none;
   padding: 0.75rem 1.5rem;
   border-radius: 5px;
   font-weight: 600;
   cursor: pointer;
+}
+
+.btn-add-session:hover {
+  background: rgba(255, 255, 255, 0.75);
+  color: #065f46;
 }
 
 /* Stats rapides */
@@ -46,10 +54,10 @@
 }
 
 .stat-card {
-  background: linear-gradient(135deg, #f0f0f0, #d9d9d9, #bfbfbf);
+  background: linear-gradient(145deg, #242830 0%, #1f232a 50%, #1a1e24 100%);
   border-radius: 5px;
   padding: 1.15rem;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -77,14 +85,14 @@
 
 .stat-label {
   font-size: 1rem;
-  color: #1e3c50;
+  color: rgba(255, 255, 255, 0.75);
   margin: 0 0 0.25rem 0;
 }
 
 .stat-value {
   font-size: 1.9rem;
   font-weight: bold;
-  color: #1f2937;
+  color: #787e7c;
   margin: 0;
 }
 
@@ -106,12 +114,11 @@
 
 /* Carte de session */
 .session-card {
-  background: white;
+  background: linear-gradient(145deg, #242830 0%, #1f232a 50%, #1a1e24 100%);
   border-radius: 5px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
   overflow: hidden;
   transition: all 0.3s ease;
-  border: 2px solid transparent;
 }
 
 .session-card:hover {
@@ -125,14 +132,13 @@
   justify-content: space-between;
   align-items: center;
   padding: 1rem 1.5rem;
-  background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
-  border-bottom: 1px solid #e5e7eb;
+  background: linear-gradient(145deg, #2c303a 0%, #262a33 50%, #20252d 100%);
+  border-bottom: 0.15px solid #4c4c4e;
 }
 
 .session-date {
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: #4b5563;
+  font-size: 0.95rem;
+  font-weight: 500;
 }
 
 .session-profit {
@@ -171,7 +177,7 @@
 
 .info-label {
   font-size: 0.75rem;
-  color: #6b7280;
+  color: #787e7c;
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
@@ -179,7 +185,7 @@
 .info-value {
   font-size: 1.125rem;
   font-weight: 600;
-  color: #1f2937;
+  color: rgba(255, 255, 255, 0.75);
 }
 
 .session-conclusion {
@@ -191,7 +197,9 @@
 
 /* Notes */
 .session-notes {
-  background: #f9fafb;
+  background: transparent;
+  border-radius: 5px;
+  border: 0.75px solid #4c4c4e;
   padding: 0.55rem;
   border-radius: 8px;
   margin-bottom: 0.2rem;
@@ -212,8 +220,8 @@
 }
 
 .tag {
-  background: #dbeafe;
-  color: #1e40af;
+  background: #eff1cb;
+  color: #96810e;
   font-size: 0.75rem;
   font-weight: 600;
   padding: 0.35rem 0.95rem;
@@ -224,16 +232,22 @@
 /* Footer de la carte */
 .session-card-footer {
   padding: 0.25rem 0.75rem;
-  background: #f9fafb;
-  border: 1px solid #e5e7eb;
+  background: transparent;
+  border-radius: 5px;
+  border: 0.75px solid #4c4c4e;
 }
 
 .btn-details {
   font-weight: 600;
   text-decoration: none;
-  font-size: 0.875rem;
+  font-size: 0.8rem;
+  color: #4b5563;
   transition: color 0.2s ease;
   display: inline-block;
+}
+
+.btn-details:hover {
+  color: #065f46;
 }
 
 /* État vide */

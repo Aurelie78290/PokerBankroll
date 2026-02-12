@@ -2,6 +2,11 @@ import { useEffect, useState } from "react";
 import { fetchWithAuth } from "../services/api";
 import { useAuth } from "../context/AuthContext";
 import StatsCard from "../components/StatsCard";
+import BankrollChart from "../components/BankrollChart";
+import RecentSessions from "../components/RecentSession";
+import TopSessions from "../components/TopSession";
+
+import "./Dashboard.css";
 
 type Session = {
   id: number;
@@ -57,11 +62,13 @@ function Dashboard() {
     );
   }
 
-  const initialBankroll = userDetails?.initial_bankroll || 0;
-  const totalProfit = sessions.reduce(
-    (sum, s) => sum + (s.cash_out - s.buy_in),
-    0,
-  );
+  const initialBankroll = Number(userDetails?.initial_bankroll) || 0;
+  const totalProfit = sessions.reduce((sum, s) => {
+    const buyIn = Number(s.buy_in) || 0;
+    const cashOut = Number(s.cash_out) || 0;
+    return sum + (cashOut - buyIn);
+  }, 0);
+
   const currentBankroll = initialBankroll + totalProfit;
   const totalSessions = sessions.length;
   const winRate =
@@ -75,13 +82,21 @@ function Dashboard() {
 
   return (
     <>
-      <h1>Dashboard</h1>
-      <StatsCard
-        currentBankroll={currentBankroll}
-        totalProfit={totalProfit}
-        totalSessions={totalSessions}
-        winRate={Number(winRate)}
-      />
+      <section className="dashboard-section">
+        <h1>Dashboard</h1>
+        <StatsCard
+          currentBankroll={currentBankroll}
+          totalProfit={totalProfit}
+          totalSessions={totalSessions}
+          winRate={Number(winRate)}
+        />
+        <BankrollChart sessions={sessions} initialBankroll={initialBankroll} />
+
+        <div className="dashboard-sessions">
+          <TopSessions sessions={sessions} />
+          <RecentSessions sessions={sessions} />
+        </div>
+      </section>
     </>
   );
 }

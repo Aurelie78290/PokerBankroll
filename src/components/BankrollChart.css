@@ -1,0 +1,28 @@
+.chart-container {
+  background: linear-gradient(145deg, #242830 0%, #1f232a 50%, #1a1e24 100%);
+  border-radius: 5px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  margin: 0 1.5rem 2rem 1.5rem;
+}
+
+.chart-wrapper {
+  height: 400px;
+  position: relative;
+}
+
+.chart-empty {
+  text-align: center;
+  padding: 3rem 1rem;
+}
+
+.chart-empty p {
+  color: #6b7280;
+  margin: 0.5rem 0;
+  font-size: 1rem;
+}
+
+.chart-empty-hint {
+  font-size: 0.9rem;
+  color: #9ca3af;
+}

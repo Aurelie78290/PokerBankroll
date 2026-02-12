@@ -23,7 +23,7 @@ function Navbar() {
       {!user ? null : (
         <>
           <p className="header-navbar-bienvenue">
-            {user && <span>Bienvenue, {user.username}</span>}
+            {user && <span>Bienvenue, {user.username}.</span>}
           </p>
           <nav className="header-navbar">
             <ul className="header-navbar-list">
