@@ -132,7 +132,7 @@ function SessionDetails() {
           {/* Notes */}
           {session.notes && (
             <div className="session-notes">
-              <p>📝 {session.notes}</p>
+              <p>Notes : {session.notes}</p>
             </div>
           )}
 
@@ -146,10 +146,7 @@ function SessionDetails() {
               ))}
             </div>
           )}
-          <div
-            className="session-actions"
-            style={{ marginTop: "1.5rem", display: "flex", gap: "1rem" }}
-          >
+          <div className="session-actions">
             <button
               className="btn-add-session"
               onClick={() => navigate(`/sessions/edit/${session.id}`)}

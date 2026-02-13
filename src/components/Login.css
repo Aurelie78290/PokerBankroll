@@ -72,15 +72,32 @@
 }
 
 .login-form button:disabled {
-  background: #aaa;
+  background: rgba(255, 255, 255, 0.75);
   cursor: not-allowed;
 }
 
-.login-form .error {
-  background: #ffe5e5;
-  color: #c40000;
-  padding: 10px;
-  border-radius: 6px;
-  font-size: 14px;
+.login-inscription {
+  margin-top: 1rem;
+  padding-top: 1rem;
   text-align: center;
+}
+
+.login-inscription p {
+  color: #6b7280;
+  font-size: 0.8rem;
+  margin: 0;
+}
+
+.login-link-register {
+  background: none;
+  border: none;
+  color: #184436;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+  transition: color 0.2s;
+}
+
+.login-link-register:hover {
+  color: #b22222;
 }

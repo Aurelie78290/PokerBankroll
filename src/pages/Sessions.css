@@ -34,7 +34,11 @@
     0 0 0 1px rgba(255, 255, 255, 0.06);
   color: rgba(255, 255, 255, 0.75);
   border: none;
-  padding: 0.75rem 1.5rem;
+  padding: 0.45rem 1.25rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
   border-radius: 5px;
   font-weight: 600;
   cursor: pointer;
@@ -253,25 +257,18 @@
 /* État vide */
 .sessions-empty {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   padding: 4rem 2rem;
-  background: white;
+  background: linear-gradient(145deg, #242830 0%, #1f232a 50%, #1a1e24 100%);
   border-radius: 5px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-.empty-icon {
-  font-size: 5rem;
-  margin-bottom: 1rem;
-  opacity: 0.4;
-  img {
-    width: 80px;
-    height: 80px;
-  }
-}
-
 .sessions-empty h2 {
   font-size: 1.5rem;
-  color: #1f2937;
+  color: rgba(255, 255, 255, 0.75);
   margin-bottom: 0.5rem;
 }
 
@@ -310,12 +307,8 @@
   font-size: 1rem;
 }
 
-/* Error */
-.sessions-error {
-  background: #fee2e2;
-  border: 1px solid #fca5a5;
-  color: #991b1b;
-  padding: 1rem;
-  border-radius: 0.5rem;
-  text-align: center;
+.plus-icon {
+  color: #065f46;
+  margin-right: 8px;
+  font-size: 1.8rem;
 }

@@ -87,7 +87,6 @@ function BankrollChart({ sessions, initialBankroll }: BankrollChartProps) {
     return (
       <div className="chart-container">
         <div className="chart-empty">
-          <p>📊 Données en cours de chargement</p>
           <p className="chart-empty-hint">
             Ajoutez des sessions pour voir l'évolution
           </p>

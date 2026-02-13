@@ -62,6 +62,19 @@ function Login() {
           {loading ? "Connexion..." : "Connexion"}
         </button>
       </form>
+
+      <div className="login-inscription">
+        <p>
+          Pas encore inscrit(e) ? {""}
+          <button
+            type="button"
+            onClick={() => navigate("/register")}
+            className="login-link-register"
+          >
+            Créer un compte
+          </button>
+        </p>
+      </div>
     </section>
   );
 }

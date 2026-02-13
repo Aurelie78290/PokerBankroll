@@ -7,6 +7,7 @@ type Session = {
   date: string;
   buy_in: number;
   cash_out: number;
+  room: string;
   profit: number;
   notes: string;
 };
@@ -16,15 +17,6 @@ type RecentSessionsProps = {
 };
 
 function RecentSessions({ sessions }: RecentSessionsProps) {
-  const formatDate = (dateString: string) => {
-    const date = new Date(dateString);
-    return date.toLocaleDateString("fr-FR", {
-      day: "2-digit",
-      month: "short",
-      year: "numeric",
-    });
-  };
-
   return (
     <div className="recent-sessions">
       <div className="recent-sessions-header">
@@ -36,7 +28,7 @@ function RecentSessions({ sessions }: RecentSessionsProps) {
 
       {sessions.length === 0 ? (
         <div className="recent-sessions-empty">
-          <p>🎰 Aucune session enregistrée</p>
+          <p>Aucune session enregistrée</p>
           <Link to="/sessions" className="btn-add-first">
             Ajouter votre première session
           </Link>
@@ -58,10 +50,13 @@ function RecentSessions({ sessions }: RecentSessionsProps) {
                     month: "short",
                   })}
                 </span>
+                <span className="date-year">
+                  {new Date(session.date).getFullYear()}
+                </span>
               </div>
 
               <div className="session-info">
-                <p className="session-title">{formatDate(session.date)}</p>
+                <p className="session-title">{session.room}</p>
                 <p className="session-details">
                   {session.buy_in}€ → {session.cash_out}€
                 </p>

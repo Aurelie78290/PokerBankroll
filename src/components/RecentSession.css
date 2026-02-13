@@ -39,8 +39,11 @@
 
 .btn-add-first {
   display: inline-block;
-  background: #10b981;
-  color: white;
+  background: linear-gradient(145deg, #242830 0%, #1f232a 50%, #1a1e24 100%);
+  box-shadow:
+    0 35px 90px rgba(0, 0, 0, 0.75),
+    0 0 0 1px rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.75);
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
   text-decoration: none;
@@ -49,7 +52,8 @@
 }
 
 .btn-add-first:hover {
-  background: #059669;
+  background: rgba(255, 255, 255, 0.75);
+  color: #065f46;
 }
 
 .recent-sessions-list {
@@ -84,20 +88,25 @@
   height: 60px;
   background: white;
   border-radius: 0.5rem;
+  padding: 0.15rem 0;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .date-day {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-weight: bold;
   color: #1f2937;
-  line-height: 1;
 }
 
 .date-month {
-  font-size: 0.75rem;
+  font-size: 0.65rem;
   color: #6b7280;
   text-transform: uppercase;
+}
+
+.date-year {
+  font-size: 0.65rem;
+  color: #1f2937;
 }
 
 .session-info {

@@ -122,7 +122,7 @@ function Sessions() {
           </p>
         </div>
         <button className="btn-add-session" onClick={() => setShowAdd(true)}>
-          ➕ Nouvelle session
+          <span className="plus-icon">+</span> Nouvelle session
         </button>
       </div>
 
@@ -165,13 +165,10 @@ function Sessions() {
       {/* Liste des sessions */}
       {sessions.length === 0 ? (
         <div className="sessions-empty">
-          <div className="empty-icon">
-            <img src={pokerStart} alt="cartes de poker" />
-          </div>
           <h2>Aucune session enregistrée</h2>
           <p>Commencez par ajouter votre première session de poker !</p>
           <button className="btn-add-session" onClick={() => setShowAdd(true)}>
-            ➕ Ajouter une session
+            <span className="plus-icon">+</span> Ajouter une session
           </button>
         </div>
       ) : (

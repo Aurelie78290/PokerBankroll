@@ -6,6 +6,7 @@ import ProtectedRoutes from "./components/ProtectedRoutes.tsx";
 import App from "./App.tsx";
 import Home from "./pages/Home.tsx";
 import Dashboard from "./pages/Dashboard.tsx";
+import Register from "./pages/Register.tsx";
 import Sessions from "./pages/Sessions.tsx";
 import SessionDetails from "./pages/SessionDetails.tsx";
 import Settings from "./pages/Settings.tsx";
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/register",
+        element: <Register />,
       },
       {
         path: "/dashboard",
